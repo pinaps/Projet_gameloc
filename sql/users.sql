@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 08 Janvier 2016 à 12:06
+-- Généré le :  Ven 08 Janvier 2016 à 12:44
 -- Version du serveur :  5.6.25
 -- Version de PHP :  5.6.11
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
+  `email` varchar(150) DEFAULT NULL,
   `password` text,
   `lastname` varchar(100) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
