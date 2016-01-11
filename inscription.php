@@ -9,14 +9,25 @@ session_start();
 <html>
 <head>
 	<title>Inscription</title>
-	
+	<?php include_once(__DIR__.'/include/head.php'); ?>
+		
+
+
+
 </head>
 <body>
+	<main id="backgroundGrey" class="center" >
+		<?php include(__DIR__.'/include/coreStyle.php'); ?>
+		<h4>Inscription</h4>
+			<br></br>
+			<br></br>
+											
+	</main>	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1>Inscription</h1>
-				<form method="POST" action="gerantIscription.php">
+				
+					<form method="POST" action="gerantIscription.php">
 					<div class="form-group">
 					    <label for="EmailId">Email</label>
 					    <input type="text" class="form-control" id="EmailId" placeholder="Email" name="email" required >
