@@ -174,9 +174,17 @@ if (isset($_POST['send'])) {
 				$_SESSION['user'] = $resultUser;
 
 				// On redirige l'utilisateur vers la page protégée profile.php
-				header("Location: profil.php");
+				header("Location: catalogue.php");
 				die();
 			}
-	}		
+	}
+	else {
+			// On stocke toutes les erreurs en session
+			$_SESSION['registerErrors'] = $errors;
+
+			// On redirige dans l'index
+			header("Location: inscription.php");
+			die();
+		}		
 }
-?>
+?> 
