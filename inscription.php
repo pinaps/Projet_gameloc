@@ -12,13 +12,21 @@ session_start();
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/normalize.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="public/css/main.css">
 </head>
 <body>
+	<main id="backgroundGrey" class="center" >
+		<?php include(__DIR__.'/include/coreStyle.php'); ?>
+		<h4>Inscription</h4>
+			<br></br>
+			<br></br>
+											
+	</main>	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1>Inscription</h1>
-				<form method="POST" action="gerantIscription.php">
+				
+					<form method="POST" action="gerantIscription.php">
 					<div class="form-group">
 					    <label for="EmailId">Email</label>
 					    <input type="text" class="form-control" id="EmailId" placeholder="Email" name="email" required >
