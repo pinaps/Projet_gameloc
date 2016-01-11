@@ -49,7 +49,7 @@ session_start();
 					</div>
 					<div class="form-group">
 					    <label for="adressId">Adresse</label>
-					    <input type="password" class="form-control" id="adressId" placeholder="Adresse" name="adress" required >
+					    <input type="text" class="form-control" id="adressId" placeholder="Adresse" name="adress" required >
 					</div>
 					<div class="form-group">
 					    <label for="zipcodeId">Code postal</label>

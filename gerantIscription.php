@@ -7,7 +7,7 @@ require(__DIR__.'/config/db.php');
 if (isset($_POST['send'])) {
 
 	// Affecte une variable à chaque valeur clé de $_POST
-	$$email = trim(htmlentities($_POST['email']));
+	$email = trim(htmlentities($_POST['email']));
 	$password = trim(htmlentities($_POST['password']));
 	$passwordConfirm = trim(htmlentities($_POST['passwordConfirm']));
 	$lastname = trim(htmlentities($_POST['lastname']));
@@ -153,9 +153,9 @@ if (isset($_POST['send'])) {
 				$query->bindValue(':lastname', $lastname, PDO::PARAM_STR);
 				$query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
 				$query->bindValue(':adress', $adress, PDO::PARAM_STR);
-				$query->bindValue(':zipcode', $zipcode, PDO::PARAM_INT);
+				$query->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
 				$query->bindValue(':town', $town, PDO::PARAM_STR);
-				$query->bindValue(':phone', $phone, PDO::PARAM_INT);
+				$query->bindValue(':phone', $phone, PDO::PARAM_STR);
 				$query->execute();
 
 

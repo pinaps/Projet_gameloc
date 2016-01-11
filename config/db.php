@@ -2,7 +2,7 @@
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
-define('DB', 'wf3_gameloc');
+define('DB', 'wf3_gamelog');
 
 $db_options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
