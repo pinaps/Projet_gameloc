@@ -29,6 +29,7 @@ session_start();
 				
 					<form method="POST" action="gerantIscription.php">
 
+
 						<div class="form-group <?php if(isset($_SESSION['registerErrors']['email'])) echo"has-error";?>">
 						    <label for="EmailId">Email</label>
 						    <input type="text" class="form-control" id="EmailId" placeholder="Email" name="email" required >

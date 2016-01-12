@@ -1,13 +1,13 @@
 <?php
 
-function CheckLoggedIn(){
+function checkLoggedIn(){
 	if(empty($_SESSION['user'])){
 		header("location: index.php");
 		die();
 	}
 }
 
-function CheckAdmin(){
+function checkAdmin(){
 	if ($_SESSION['user']['role'] != 'admin') {
 		header("HTTP/1.0 403 Forbidden");
 		die();
