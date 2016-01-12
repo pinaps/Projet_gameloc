@@ -28,7 +28,6 @@ session_start();
 			<div class="col-md-6 col-md-offset-3">
 				
 					<form method="POST" action="gerantIscription.php">
-<<<<<<< HEAD
 
 						<div class="form-group <?php if(isset($_SESSION['registerErrors']['email'])) echo"has-error";?>">
 						    <label for="EmailId">Email</label>
