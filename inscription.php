@@ -86,9 +86,10 @@ session_start();
 					<div class="form-group">
 					    <label for="adressId">Adresse</label>
 
-					    <input type="text" class="form-control" id="adressId" placeholder="Adresse" name="adress" required >
 
-					   						
+					    <input type="text" class="form-control" id="adressId" placeholder="Adresse" name="adress" required >
+				   							
+
 						<?php if(isset($_SESSION['registerErrors']['adress'])):?>
 							<div class="form-group has-error">
 								<?php echo $_SESSION['registerErrors']['adress'];?>
