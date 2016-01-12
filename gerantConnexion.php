@@ -23,7 +23,7 @@ if(isset($_POST['send'])) {
 // Si le mot de passe correspond on detruit le mot de passe enregistrer dans la variable par securité
 		if($isValidPassword) {
 			unset($resultUser['password']);
-			$SESSION['user'] = $resultUser;
+			$_SESSION['user'] = $resultUser;
 //On redirige ensuite l'utilisateur vers le catalogue
 			header("Location: catalogue.php");
 			die();	
