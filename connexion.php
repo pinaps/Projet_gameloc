@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -18,26 +20,22 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 
-				<!-- Affiche les erreurs stockés en session avec la clé registerErrors -->
-					<?php if(isset($_SESSION['registerErrors'])): ?>
-						<div class="alert alert-danger">
-							<?php foreach($_SESSION['registerErrors'] as $keyError => $error): ?>
-								<p><?php echo $error; ?></p>
-							<?php endforeach; ?>
-						</div>
-						<!-- Supprime les erreurs après les avoir affiché 1 fois -->
-						<?php unset($_SESSION['registerErrors']); ?>
-					<?php endif; ?>
-
-						
+							
 					<!-- Copié de bootstrap : http://getbootstrap.com/css/#forms -->
 			            
-					<form method="POST" action="catalogue.php">
+					<form method="POST" action="gerantConnexion.php">
 						
 						<div class="form-group">
 			              <label for="email">Email</label>
 			              <input type="text" class="form-control" id="email" name="email" placeholder="Email">
 			            </div>
+
+			            
+			            <?php if(isset($_SESSION['loginErrors']['email'])): ?>
+						<div class="alert alert-danger">
+						<?php  echo $_SESSION['loginErrors']['email'] ?>
+						</div>
+						<?php endif; ?>
 
 			            <div class="form-group">
 			              <label for="password">Password</label>
@@ -45,8 +43,15 @@
 			            </div>
 
 
+			            <?php if(isset($_SESSION['loginErrors']['password'])): ?>
+						<div class="alert alert-danger">
+						<?php  echo $_SESSION['loginErrors']['password'] ?>
+						</div>
+						<?php endif; ?>
+
+
 			           
-			            <button type="submit" name="action" class="btn btn-success">Valider</button>
+			            <button type="submit" name="send" class="btn btn-success">Valider</button>
 					</form>
 				</div>
 
