@@ -20,11 +20,21 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 
+				<!-- Affiche les erreurs stockés en session avec la clé registerErrors -->
+					<?php if(isset($_SESSION['registerErrors'])): ?>
+						<div class="alert alert-danger">
+							<?php foreach($_SESSION['registerErrors'] as $keyError => $error): ?>
+								<p><?php echo $error; ?></p>
+							<?php endforeach; ?>
+						</div>
+						<!-- Supprime les erreurs après les avoir affiché 1 fois -->
+						<?php unset($_SESSION['registerErrors']); ?>
+					<?php endif; ?>
 
 						
 					<!-- Copié de bootstrap : http://getbootstrap.com/css/#forms -->
 			            
-					<form method="POST" action="registerHandler.php">
+					<form method="POST" action="catalogue.php">
 						
 						<div class="form-group">
 			              <label for="email">Email</label>
@@ -38,7 +48,7 @@
 
 
 			           
-			            <button type="submit" name="action" class="btn btn-default">Valider</button>
+			            <button type="submit" name="action" class="btn btn-success">Valider</button>
 					</form>
 				</div>
 
