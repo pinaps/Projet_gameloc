@@ -2,12 +2,13 @@
 session_start();
 
 require(__DIR__.'/config/db.php');
+require(__DIR__.'/include/functions.php');
 
 // Vérifie que le button submit a été cliqué
 if (isset($_POST['send'])) {
 
 	// Affecte une variable à chaque valeur clé de $_POST
-	$$email = trim(htmlentities($_POST['email']));
+	$email = trim(htmlentities($_POST['email']));
 	$password = trim(htmlentities($_POST['password']));
 	$passwordConfirm = trim(htmlentities($_POST['passwordConfirm']));
 	$lastname = trim(htmlentities($_POST['lastname']));
@@ -26,16 +27,17 @@ if (isset($_POST['send'])) {
 		$errors = [];
 
 
+//TO DO : code pour garder les champs bien remplis en cas d'erreur
 
 // 1. Vérifier tous les champs input
 
 
 	// Check du champs email
 		if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-			$errors['email'] = "Wrong email.";
+			$errors['email'] = "L'email n'est pas conforme.";
 		}
 		elseif(strlen($email) > 60) {
-			$errors['email'] = "Email too long.";
+			$errors['email'] = "L'email est trop long.";
 		}
 		else {
 			// Je vérifie que l'email existe pas déjà dans ma bdd
@@ -46,9 +48,12 @@ if (isset($_POST['send'])) {
 			$resultEmail = $query->fetch();
 
 			if($resultEmail['email']) {
-				$errors['email'] = "Email already exists.";
+				$errors['email'] = "Cette adresse emeil est dèja utilisée.";
 			}
 		}
+
+
+
 
 
 	//check du champ lastname
@@ -147,21 +152,38 @@ if (isset($_POST['send'])) {
 
 // 4. Enregistrer en bdd
 	if(empty($errors)) {
-				$query = $pdo->prepare('INSERT INTO users(email, password, lastname, firstname, adress, zipcode, town, phone,  created_at, updated_at) VALUES(:email, :password, :lastname, :firstname, :adress, :zipcode, :town, :phone, NOW(), NOW())');
+				$query = $pdo->prepare('INSERT INTO users(email, password, lastname, firstname, adress, zipcode, town, phone, latitude, longitude,  created_at, updated_at)
+										 VALUES(:email, :password, :lastname, :firstname, :adress, :zipcode, :town, :phone, :latitude, :longitude, NOW(), NOW())');
 				$query->bindValue(':email', $email, PDO::PARAM_STR);				
 				$query->bindValue(':password', $hashedPassword, PDO::PARAM_STR);
 				$query->bindValue(':lastname', $lastname, PDO::PARAM_STR);
 				$query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
 				$query->bindValue(':adress', $adress, PDO::PARAM_STR);
-				$query->bindValue(':zipcode', $zipcode, PDO::PARAM_INT);
+				$query->bindValue(':zipcode', $zipcode, PDO::PARAM_STR);
 				$query->bindValue(':town', $town, PDO::PARAM_STR);
-				$query->bindValue(':phone', $phone, PDO::PARAM_INT);
+				$query->bindValue(':phone', $phone, PDO::PARAM_STR);
+
+
+			// Geocode de l'adresse 
+
+			$geocodeAdresse = geocode($adress.' '.$zipcode.' '.$town);
+
+			if (!empty($geocodeAdresse)) {
+				$query->bindValue(':latitude', $geocodeAdresse['lat'], PDO::PARAM_STR);
+				$query->bindValue(':longitude', $geocodeAdresse['lng'], PDO::PARAM_STR);
+
+			}
+			else{
+				$query->bindValue(':latitude', NULL, PDO::PARAM_STR);
+				$query->bindValue(':longitude', NULL, PDO::PARAM_STR);
+			}
+
 				$query->execute();
 
 
 // 5. Créer une session user pour le logger immédiatement
 	// L'utilisateur a t-il été bien inséré en bdd ?
-			if($query->rowCount() > 0) {
+			if($query->rowCount()== 1) {
 				// Récupération de l'utilisateur depuis la bdd 
 				// pour l'affecter à une variable de session
 				$query = $pdo->prepare('SELECT * FROM users WHERE id = :id');
@@ -173,7 +195,7 @@ if (isset($_POST['send'])) {
 				unset($resultUser['password']);
 				$_SESSION['user'] = $resultUser;
 
-				// On redirige l'utilisateur vers la page protégée profile.php
+				// On redirige l'utilisateur vers la page catalogue
 				header("Location: catalogue.php");
 				die();
 			}
@@ -182,9 +204,9 @@ if (isset($_POST['send'])) {
 			// On stocke toutes les erreurs en session
 			$_SESSION['registerErrors'] = $errors;
 
-			// On redirige dans l'index
+			// On redirige vers la page d'inscritpion
 			header("Location: inscription.php");
 			die();
-		}		
+	}		
 }
 ?> 
