@@ -1,26 +1,37 @@
 <?php
 session_start();
+require(__DIR__.('/config/db.php'));
+
+
+
 
 if (isset($_POST['send'])) {
 	$jeu = trim(htmlentities($_POST['game']));
 	$plateforme = trim(htmlentities($_POST['plateform']));
 
-	$query = $pdo->prepare('SELECT * 
-							FROM games
-							WHERE (name = :jeu AND plateforme = :plateforme)');
+	$query = $pdo->prepare('');
 	$query->bindValue(':jeu', $jeu, PDO::PARAM_STR);
 	$query->bindValue(':plateforme', $plateforme, PDO::PARAM_STR);
 	$query->execute();
 
-	$allgames = $query->fetchAll();
+	$games = $query->fetchAll();
 
 	echo "<pre>";
-	echo $allgames;
+	echo $games;
 	echo "</pre>";
 }
 
 
+else{
 
+	$query = $pdo->prepare('SELECT * FROM games');
+	$query->execute();
+	$games = $query->fetchAll();
+
+ print_r($games);
+
+
+}
 
 
 
@@ -75,6 +86,12 @@ if (isset($_POST['send'])) {
 
 
 			<div class="col-md-9">
+				
+				<img src="">
+				<h5></h5>
+				<p>Plateforme : </p>
+				<button></button>
+
 
 		  	
 		  	</div>
