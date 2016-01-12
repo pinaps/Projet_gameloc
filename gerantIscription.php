@@ -164,6 +164,7 @@ if (isset($_POST['send'])) {
 				$query->bindValue(':phone', $phone, PDO::PARAM_STR);
 
 
+
 			// Geocode de l'adresse 
 
 			$geocodeAdresse = geocode($adress.' '.$zipcode.' '.$town);
@@ -177,6 +178,7 @@ if (isset($_POST['send'])) {
 				$query->bindValue(':latitude', NULL, PDO::PARAM_STR);
 				$query->bindValue(':longitude', NULL, PDO::PARAM_STR);
 			}
+
 
 				$query->execute();
 
