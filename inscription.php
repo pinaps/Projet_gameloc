@@ -37,6 +37,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['email'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['email'];?>
+									<?php unset($_SESSION['registerErrors']['email']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -48,6 +49,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['password'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['password'];?>
+									<?php unset( $_SESSION['registerErrors']['password']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -59,6 +61,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['password'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['password'];?>
+									<?php unset( $_SESSION['registerErrors']['password']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -70,6 +73,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['lastname'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['lastname'];?>
+									<?php unset( $_SESSION['registerErrors']['lastname']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -81,6 +85,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['firstname'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['firstname'];?>
+									<?php unset( $_SESSION['registerErrors']['firstname']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -92,6 +97,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['adress'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['adress'];?>
+									<?php unset( $_SESSION['registerErrors']['adress']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -103,6 +109,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['zipcode'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['zipcode'];?>
+									<?php unset( $_SESSION['registerErrors']['zipcode']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -114,6 +121,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['town'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['town'];?>
+									<?php unset( $_SESSION['registerErrors']['town']) ;?>
 								</div>
 							<?php endif;?>
 						</div>
@@ -125,6 +133,7 @@ session_start();
 							<?php if(isset($_SESSION['registerErrors']['phone'])):?>
 								<div class="alert alert-danger">
 									<?php echo $_SESSION['registerErrors']['phone'];?>
+									<?php unset( $_SESSION['registerErrors']['phone']) ;?>
 								</div>
 							<?php endif;?>
 						</div>

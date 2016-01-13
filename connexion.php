@@ -22,7 +22,14 @@ session_start();
 
 							
 					<!-- Copié de bootstrap : http://getbootstrap.com/css/#forms -->
-			            
+			          
+					<?php if (isset($_SESSION['message'])):?>
+						<div class="alert alert-info">
+							<?php echo $_SESSION['message'];?>
+							<?php unset($_SESSION['message']) ;?>
+						</div>
+					<?php endif;?>
+
 					<form method="POST" action="gerantConnexion.php">
 						
 						<div class="form-group">
@@ -33,7 +40,8 @@ session_start();
 			            
 			            <?php if(isset($_SESSION['loginErrors']['email'])): ?>
 						<div class="alert alert-danger">
-						<?php  echo $_SESSION['loginErrors']['email'] ?>
+						<?php  echo $_SESSION['loginErrors']['email']; ?>
+						<?php unset($_SESSION['loginErrors']['email']);?>
 						</div>
 						<?php endif; ?>
 
@@ -45,13 +53,18 @@ session_start();
 
 			            <?php if(isset($_SESSION['loginErrors']['password'])): ?>
 						<div class="alert alert-danger">
-						<?php  echo $_SESSION['loginErrors']['password'] ?>
+						<?php  echo $_SESSION['loginErrors']['password']; ?>
+						<?php unset($_SESSION['loginErrors']['password']);?>
 						</div>
 						<?php endif; ?>
 
 
-			           
-			            <button type="submit" name="send" class="btn btn-success">Valider</button>
+
+						
+			           	<button type="submit" name="send" class="btn btn-success" >Valider</button>
+									           
+						<a href="mdpoublie.php" class="btn btn-link" role="button">Mot de passe oublié ?</a>
+
 					</form>
 				</div>
 

@@ -111,7 +111,7 @@ if (isset($_POST['send'])) {
 	}
 	else{
 		// Lenuméro de téléphone contient 10 chiffres ?
-			$phoneValid  = preg_match('/\d{10}/', $phone);
+			$phoneValid  = preg_match('/^0\d{9}$/', $phone);
 		if (!$phoneValid) {
 			$errors['phone'] = "le numéro de téléphone n'est pas conforme.";
 		}
